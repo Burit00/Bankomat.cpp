@@ -3,12 +3,20 @@
 
 AppGlobalSettings::AppGlobalSettings()
 {
-	_font.loadFromFile("Roboto.ttf");
+	font.loadFromFile("Roboto.ttf");
+	Text text("", font, 24);
+	text.setFillColor(accent);
+	this->text = text;
+}
+
+Text AppGlobalSettings::getText()
+{
+	return text;
 }
 
 Font& AppGlobalSettings::getFont()
 {
-	return _font;
+	return font;
 }
 
 Color AppGlobalSettings::getPrimaryColor()

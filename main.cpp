@@ -2,6 +2,7 @@
 #include <iostream>
 #include "GlobalVariables.h"
 #include "InputBox.h"
+#include "Button.h"
 using namespace sf;
 
 
@@ -18,12 +19,15 @@ int main() {
 
 	InputBox pinInput(20, appConf.getAccentColor());
 	pinInput.setLimit(8);
-	pinInput.setType(inputType(NUMBER));
+	pinInput.setType(inputTypeEnum(NUMBER));
 	RectangleShape& bg = pinInput.background;
 	bg.setPosition({ 886, 194 });
 	bg.setSize({ 270, 55 });
 	bg.setFillColor(appConf.getPrimaryColor());
 	pinInput.setBackgound(bg);
+
+	Button button("Zatwierdz");
+	button.setPositon({ 900, 600 });
 
 	while (window.isOpen()) {
 		while (window.pollEvent(event)) {
@@ -48,6 +52,7 @@ int main() {
 		window.clear();
 		window.draw(sprite);
 		window.draw(pinInput);
+		window.draw(button);
 		window.display();
 	}
 

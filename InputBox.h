@@ -10,12 +10,17 @@ using namespace sf;
 #define ENTER_KEY 13
 #define ESCAPE_KEY 27
 
+enum inputTypeEnum {
+	TEXT = 0,
+	NUMBER = 1
+};
+
 class InputBox: public Drawable
 {
 private:
 	ostringstream _text;
 	Text _textBox;
-	inputType _type;
+	inputTypeEnum _type;
 	bool _isFocused;
 	int _maxLength;
 	bool _hasBackgound;
@@ -34,7 +39,7 @@ public:
 	void setFocused(bool isFocused);
 	bool isMouseOver(RenderWindow& window);
 	void onTyped(Event keyboardEvent);
-	void setType(inputType type);
+	void setType(inputTypeEnum type);
 	void setText(string text = "");
 	string getText();
 

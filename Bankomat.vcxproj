@@ -136,12 +136,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppSettings.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="GlobalVariables.cpp" />
     <ClCompile Include="InputBox.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppSettings.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="GlobalVariables.h" />
     <ClInclude Include="InputBox.h" />
   </ItemGroup>

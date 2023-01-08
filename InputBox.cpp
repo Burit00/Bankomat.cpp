@@ -78,7 +78,7 @@ void InputBox::onTyped(Event keyboardEvent)
 	}
 }
 
-void InputBox::setType(inputType type)
+void InputBox::setType(inputTypeEnum type)
 {
 	_type = type;
 }
