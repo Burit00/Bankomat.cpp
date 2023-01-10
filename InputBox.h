@@ -24,22 +24,28 @@ private:
 	bool _isFocused;
 	int _maxLength;
 	bool _hasBackgound;
+	bool _isPassword;
 	void inputLogic(int charTyped);
 	void deleteLastChar();
 	bool isInRange(int pos, int x1, int x2) const;
 	void setTextPositionForBackground();
+	void setTextOnScreen();
+	string hashText(string text);
 public:
 	RectangleShape background;
-	InputBox(int size, Color color, bool focus = false);
+	InputBox(int size = 20, Color color = appConf.accentClr, bool focus = false);
 	void draw(RenderTarget&target, RenderStates state) const override;
 	void setBackgound(const RectangleShape bg);
 	void setFont(Font& font);
 	void setPositon(Vector2f pos);
 	void setLimit(int limit);
+	void isPassword();
 	void setFocused(bool isFocused);
+	bool getFocused();
 	bool isMouseOver(RenderWindow& window);
 	void onTyped(Event keyboardEvent);
 	void setType(inputTypeEnum type);
+	bool isEmpty();
 	void setText(string text = "");
 	string getText();
 

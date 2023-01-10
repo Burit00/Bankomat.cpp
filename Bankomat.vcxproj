@@ -135,17 +135,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="AccountService.cpp" />
     <ClCompile Include="AppSettings.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Cashmachine.cpp" />
+    <ClCompile Include="DepositWindow.cpp" />
     <ClCompile Include="GlobalVariables.cpp" />
     <ClCompile Include="InputBox.cpp" />
+    <ClCompile Include="LoginWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OperationWindow.cpp" />
+    <ClCompile Include="PiggyBank.cpp" />
+    <ClCompile Include="WindowAbstract.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="AccountService.h" />
     <ClInclude Include="AppSettings.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Cashmachine.h" />
+    <ClInclude Include="DepositWindow.h" />
     <ClInclude Include="GlobalVariables.h" />
     <ClInclude Include="InputBox.h" />
+    <ClInclude Include="LoginWindow.h" />
+    <ClInclude Include="OperationWindow.h" />
+    <ClInclude Include="PiggyBank.h" />
+    <ClInclude Include="WindowAbstract.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="accounts.txt" />
+    <Text Include="nominals.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

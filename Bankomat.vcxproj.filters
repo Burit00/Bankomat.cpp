@@ -13,36 +13,110 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Windows">
+      <UniqueIdentifier>{961fec7e-8c3b-43c3-8490-b46b07084dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\UI">
+      <UniqueIdentifier>{dfc669ab-b81a-4e08-ac64-1a4adc96b741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Singletons">
+      <UniqueIdentifier>{42b26b47-77e0-42ed-a035-bc062006745c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\UI">
+      <UniqueIdentifier>{83506f14-053c-4b61-b402-e52d98ab860f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Windows">
+      <UniqueIdentifier>{3868c3bc-d260-4dbe-a864-c40fbcf55b3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Singletons">
+      <UniqueIdentifier>{9b46ee14-af8f-4c0e-ae55-349040f47982}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="InputBox.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="AppSettings.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="GlobalVariables.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="Account.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowAbstract.cpp">
+      <Filter>Pliki źródłowe\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="OperationWindow.cpp">
+      <Filter>Pliki źródłowe\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginWindow.cpp">
+      <Filter>Pliki źródłowe\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="DepositWindow.cpp">
+      <Filter>Pliki źródłowe\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="Button.cpp">
+      <Filter>Pliki źródłowe\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="InputBox.cpp">
+      <Filter>Pliki źródłowe\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountService.cpp">
+      <Filter>Pliki źródłowe\Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="AppSettings.cpp">
+      <Filter>Pliki źródłowe\Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="Cashmachine.cpp">
+      <Filter>Pliki źródłowe\Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="PiggyBank.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="InputBox.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="AppSettings.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalVariables.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="Account.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="WindowAbstract.h">
+      <Filter>Pliki nagłówkowe\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginWindow.h">
+      <Filter>Pliki nagłówkowe\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="OperationWindow.h">
+      <Filter>Pliki nagłówkowe\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="DepositWindow.h">
+      <Filter>Pliki nagłówkowe\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Pliki nagłówkowe\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InputBox.h">
+      <Filter>Pliki nagłówkowe\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountService.h">
+      <Filter>Pliki nagłówkowe\Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="AppSettings.h">
+      <Filter>Pliki nagłówkowe\Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="Cashmachine.h">
+      <Filter>Pliki nagłówkowe\Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="PiggyBank.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="accounts.txt">
+      <Filter>Pliki zasobów</Filter>
+    </Text>
+    <Text Include="nominals.txt">
+      <Filter>Pliki zasobów</Filter>
+    </Text>
   </ItemGroup>
 </Project>

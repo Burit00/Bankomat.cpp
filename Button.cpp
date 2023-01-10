@@ -4,11 +4,12 @@
 #include "Button.h"
 
 
-Button::Button(string text):
-	_text(appConf.getText()), background({200, 50})
+Button::Button(string text, Vector2f size):
+	_text(appConf.getText()), background(size)
 {
 	_text.setString(text);
-	background.setFillColor(appConf.getPrimaryColor());
+	background.setFillColor(appConf.primaryClr);
+	defaultColor = appConf.primaryClr;
 }
 
 void Button::draw(RenderTarget& target, RenderStates states) const
@@ -17,7 +18,7 @@ void Button::draw(RenderTarget& target, RenderStates states) const
 	target.draw(_text, states);
 }
 
-void Button::setPositon(Vector2f pos)
+void Button::setPosition(Vector2f pos)
 {
 	background.setPosition(pos);
 	setTextPositionForBackground();
@@ -33,10 +34,23 @@ bool Button::isMouseOver(RenderWindow& window)
 	const int inputEndY = (int)background.getPosition().y + background.getSize().y;
 
 	if (isInRange(mouseX, inputStartX, inputEndX) && isInRange(mouseY, inputStartY, inputEndY)) {
+		changeToHoverColor();
 		return true;
 	} else {
+		background.setFillColor(defaultColor);
 		return false;
 	}
+}
+
+void Button::setFillColor(Color bgColor)
+{
+	defaultColor = bgColor;
+}
+
+void Button::changeToHoverColor()
+{
+	Uint32 hoverColor = defaultColor.toInteger() - 0x00000022;
+	background.setFillColor(Color(hoverColor));
 }
 
 bool Button::isInRange(int pos, int x1, int x2) const
@@ -51,6 +65,6 @@ void Button::setTextPositionForBackground()
 	float textPosX = (float)background.getPosition().x + background.getSize().x / 2;
 	float textPosY = (float)background.getPosition().y + background.getSize().y / 2;
 
-	_text.setOrigin({ textOriginX, textOriginY });
+	_text.setOrigin({ textOriginX + 2.5f, textOriginY + 2.5f });
 	_text.setPosition({ textPosX,  textPosY });
 }

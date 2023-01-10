@@ -1,10 +1,12 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include "GlobalVariables.h"
 #include "InputBox.h"
 
-InputBox::InputBox(int size, Color color, bool focus):
-	_type(TEXT), _maxLength(0), _isFocused(focus), _hasBackgound(false)
+InputBox::InputBox(int size, Color color, bool focus) :
+	_type(TEXT),
+	_maxLength(0),
+	_isFocused(focus),
+	_hasBackgound(false),
+	_isPassword(false),
+	background({ 350, 70 })
 {
 	_textBox.setCharacterSize(size);
 	_textBox.setFillColor(color);
@@ -42,10 +44,20 @@ void InputBox::setLimit(int limit)
 	_maxLength = limit;
 }
 
+void InputBox::isPassword()
+{
+	_isPassword = true;
+}
+
 void InputBox::setFocused(bool isFocused)
 {
 	_isFocused = isFocused;
-	_textBox.setString(_text.str() + (_isFocused ? "_" : ""));
+	setTextOnScreen();
+}
+
+bool InputBox::getFocused()
+{
+	return _isFocused;
 }
 
 bool InputBox::isMouseOver(RenderWindow& window)
@@ -74,7 +86,7 @@ void InputBox::onTyped(Event keyboardEvent)
 	if (!_isFocused) return;
 	int text = keyboardEvent.text.unicode;
 	if (text < 128) {
-		if(!_maxLength || _text.str().length() <= _maxLength || text == DELETE_KEY) inputLogic(text);
+		if(!_maxLength || _text.str().length() < _maxLength || text == DELETE_KEY) inputLogic(text);
 	}
 }
 
@@ -87,6 +99,8 @@ void InputBox::setText(string text)
 {
 	_text.str("");
 	_text.str(text);
+	setTextOnScreen();
+	
 }
 
 string InputBox::getText()
@@ -119,8 +133,7 @@ void InputBox::inputLogic(int charTyped)
 			break;
 		}
 	}
-
-	_textBox.setString(_text.str() + "_");
+	setTextOnScreen();
 }
 
 void InputBox::deleteLastChar()
@@ -147,4 +160,20 @@ void InputBox::setTextPositionForBackground()
 
 	_textBox.setOrigin({ 0, textOriginY });
 	_textBox.setPosition({ textPosX,  textPosY });
+}
+
+void InputBox::setTextOnScreen()
+{
+	_textBox.setString((_isPassword ? hashText(_text.str()) : _text.str()) + (_isFocused ? "_" : ""));
+}
+
+string InputBox::hashText(string text)
+{
+	string password("");
+	for (int i = 0; i < text.length(); i++) password += char(42);
+	return password;
+}
+
+bool InputBox::isEmpty() {
+	return !_text.str().empty();
 }

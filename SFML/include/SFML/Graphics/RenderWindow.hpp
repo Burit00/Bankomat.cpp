@@ -44,7 +44,6 @@ namespace sf
 class SFML_GRAPHICS_API RenderWindow : public Window, public RenderTarget
 {
 public:
-
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor
     ///
