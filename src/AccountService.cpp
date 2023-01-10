@@ -22,7 +22,7 @@ bool AccountService::authorise(const std::string pin)
 }
 
 void AccountService::loadAccounts() {
-	std::ifstream accountsFile("accounts.txt");
+	std::ifstream accountsFile("src/assets/accounts.txt");
 	std::string pin("");
 	int cash{};
 	while (accountsFile >> pin >> cash) {

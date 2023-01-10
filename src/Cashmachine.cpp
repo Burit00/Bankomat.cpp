@@ -8,7 +8,7 @@ Cashmachine::Cashmachine()
 }
 
 void Cashmachine::loadCash() {
-	std::ifstream nominalFile("nominals.txt");
+	std::ifstream nominalFile("src/assets/nominals.txt");
 	int i = 0, numberOfNominal;
 
 	while (nominalFile >>  numberOfNominal) {

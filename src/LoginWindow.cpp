@@ -19,7 +19,7 @@ void LoginWindow::setFields() {
 
 void LoginWindow::setBackground()
 {
-	bgTexture.loadFromFile("signUpBg.png");
+	bgTexture.loadFromFile("src/assets/signUpBg.png");
 }
 
 void LoginWindow::setPinInput()
