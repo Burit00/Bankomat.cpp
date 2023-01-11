@@ -5,11 +5,11 @@
 
 
 Button::Button(string text, Vector2f size):
-	_text(appConf.getText()), background(size)
+	_text(appSett.getText()), background(size)
 {
 	_text.setString(text);
-	background.setFillColor(appConf.primaryClr);
-	defaultColor = appConf.primaryClr;
+	background.setFillColor(appSett.primaryClr);
+	defaultColor = appSett.primaryClr;
 }
 
 void Button::draw(RenderTarget& target, RenderStates states) const

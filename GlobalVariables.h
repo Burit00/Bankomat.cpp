@@ -3,7 +3,7 @@
 #include "AccountService.h"
 #include "Cashmachine.h"
 
-extern AppGlobalSettings appConf;
+extern AppGlobalSettings appSett;
 extern AccountService accService;
 extern Cashmachine cashmachine;
 extern enum AppControllerEnum appController;

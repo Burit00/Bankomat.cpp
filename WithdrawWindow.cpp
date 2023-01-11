@@ -5,9 +5,9 @@ WithdrawWindowal::WithdrawWindowal(RenderWindow& window) :
 	WindowAbstract(window),
 	isTransactionComplete(false),
 	accountBalanceTextBg({ 350, 70 }),
-	alertText(appConf.getText()),
+	alertText(appSett.getText()),
 	confirmButton("Wyplac"),
-	transactionDetailsTitle(appConf.getText("Szczegoly transakcji:")),
+	transactionDetailsTitle(appSett.getText("Szczegoly transakcji:")),
 	transactionDetailsBg({ 350, 70}),
 	transactionDetailsLine({350, 10}),
 	backButton("Powrot")
@@ -16,14 +16,14 @@ WithdrawWindowal::WithdrawWindowal(RenderWindow& window) :
 
 void WithdrawWindowal::setAccountBalanceText()
 {
-	accountBalanceText[0] = appConf.getText();
-	accountBalanceText[1] = appConf.getText();
+	accountBalanceText[0] = appSett.getText();
+	accountBalanceText[1] = appSett.getText();
 	accountBalanceText[0].setFillColor(Color::White);
 	accountBalanceText[1].setFillColor(Color::White);
 	accountBalanceText[0].setString("Twoj stan konta:");
 	accountBalanceText[1].setString(to_string(accService.getActiveAccount().getAccountBalance()) + " PLN");
 	accountBalanceTextBg.setPosition({ 806, 40 });
-	accountBalanceTextBg.setFillColor(Color(appConf.primaryClr.toInteger() - 0x000000CC));
+	accountBalanceTextBg.setFillColor(Color(appSett.primaryClr.toInteger() - 0x000000CC));
 
 	const float text0OriginX = accountBalanceText[0].getGlobalBounds().width / 2;
 	const float text0OriginY = accountBalanceText[0].getGlobalBounds().height / 2;
@@ -50,7 +50,7 @@ void WithdrawWindowal::setCashInput()
 	RectangleShape inputBg = cashInput.background;
 	inputBg.setPosition({ 806, 140 });
 	inputBg.setSize({ 350,70 });
-	inputBg.setFillColor(appConf.primaryClr);
+	inputBg.setFillColor(appSett.primaryClr);
 	cashInput.setBackgound(inputBg);
 }
 
@@ -72,8 +72,8 @@ void WithdrawWindowal::prepareTransactionDetailsView()
 	transactionDetailsTexts.clear();
 	transactionDetailsLine.setPosition({ 806, 195 });
 	transactionDetailsBg.setPosition({ 806, 120 });
-	transactionDetailsLine.setFillColor(appConf.primaryClr);
-	transactionDetailsBg.setFillColor(Color(appConf.primaryClr.toInteger() - 0x000000CC));
+	transactionDetailsLine.setFillColor(appSett.primaryClr);
+	transactionDetailsBg.setFillColor(Color(appSett.primaryClr.toInteger() - 0x000000CC));
 
 	const float padding = 35;
 	const float posXSideOfBg = transactionDetailsBg.getPosition().x + transactionDetailsBg.getSize().x / 2;
@@ -86,7 +86,8 @@ void WithdrawWindowal::prepareTransactionDetailsView()
 void WithdrawWindowal::updateTransactionDetailsView()
 {
 	const float rowHeight = 40;
-	const float padding = 35;
+	const float paddingTopBottom = 35;
+	const float paddingLeftRight = 25;
 
 
 	for (int row = 0; row < PiggyBank::numberOfNominalTypes; row++) {
@@ -102,16 +103,16 @@ void WithdrawWindowal::updateTransactionDetailsView()
 		const string text4 = to_string(nominalInt * numberOfNominalsInt) + " PLN";
 		vector<Text> texts;
 
-		texts.push_back(appConf.getText(text1));
-		texts.push_back(appConf.getText(text2));
-		texts.push_back(appConf.getText(text3));
-		texts.push_back(appConf.getText(text4));
+		texts.push_back(appSett.getText(text1));
+		texts.push_back(appSett.getText(text2));
+		texts.push_back(appSett.getText(text3));
+		texts.push_back(appSett.getText(text4));
 
-		const float posX = 806 + padding;
-		const float posY = 190 + padding + rowHeight * transactionDetailsTexts.size() - 5;
+		const float posX = 806 + paddingLeftRight;
+		const float posY = 190 + paddingTopBottom + rowHeight * transactionDetailsTexts.size() - 5;
 		const float offsetXText2 = 43;
 		const float offsetXText3 = 150;
-		const float posXText4 = transactionDetailsBg.getPosition().x + transactionDetailsBg.getSize().x - padding;
+		const float posXText4 = transactionDetailsBg.getPosition().x + transactionDetailsBg.getSize().x - paddingLeftRight;
 
 		texts[0].setPosition({ posX, posY});
 		texts[1].setPosition({ posX + offsetXText2, posY});
@@ -126,7 +127,7 @@ void WithdrawWindowal::updateTransactionDetailsView()
 
 		transactionDetailsTexts.push_back(texts);
 	}
-	transactionDetailsBg.setSize({ 350, 3 * padding + rowHeight * transactionDetailsTexts.size() });
+	transactionDetailsBg.setSize({ 350, 3 * paddingTopBottom + rowHeight * transactionDetailsTexts.size() });
 }
 
 void WithdrawWindowal::setBackButton()
@@ -179,8 +180,8 @@ void WithdrawWindowal::onClick(Event event)
 			int money = stoi(cashInput.getText());
 			if (accService.getActiveAccount().getAccountBalance() < money) {
 				setAlertText("Nie posiadasz tylu srodkow na koncie");
-			} else if (money >= cashmachine.withdrawalLimit) {
-				setAlertText("Nie mozesz wyplacic kowty powyzej\n" + to_string(cashmachine.withdrawalLimit) + " PLN");
+			} else if (money > cashmachine.withdrawalLimit) {
+				setAlertText("Nie mozesz wyplacic kwoty powyzej\n" + to_string(cashmachine.withdrawalLimit) + " PLN");
 			} else if (!cashmachine.isWithdrawalAvailable(money)) {
 				setAlertText("W bankomacie brakuje nominalow");
 			} else {

@@ -46,14 +46,12 @@ PiggyBank PiggyBank::calculateForWithdrawal(int money)
 
 	if (money >= calculateCash()) return tempWithdrawal;
 
-	for (int i = PiggyBank::numberOfNominalTypes - 1; i >= 0; i--) {
+	for (int i = PiggyBank::numberOfNominalTypes - 1; i >= 0 && money > 0; i--) {
 		const int maxNominalValue = (money / PiggyBank::nominalsTypes[i]);
 		const int avaliableNominalFromCashmachine = numberOfNominals[i] < maxNominalValue ? numberOfNominals[i] : maxNominalValue;
 
 		tempWithdrawal.setNumberOfNominals(i, avaliableNominalFromCashmachine);
 		money -= avaliableNominalFromCashmachine * PiggyBank::nominalsTypes[i];
-
-		if (money == 0) break;
 	}
 
 	return tempWithdrawal;

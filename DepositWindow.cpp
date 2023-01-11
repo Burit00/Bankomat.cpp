@@ -4,9 +4,9 @@
 DepositWindow::DepositWindow(RenderWindow& window):
 	WindowAbstract(window),
 	nominalBtnBg({350,420}),
-	description1(appConf.getText("Wybierz nominaly ktore")),
-	description2(appConf.getText("wplacisz")),
-	alertText(appConf.getText("Wprowadz kwote")),
+	description1(appSett.getText("Wybierz nominaly ktore")),
+	description2(appSett.getText("wplacisz")),
+	alertText(appSett.getText("Wprowadz kwote")),
 	resetButton("Wyczysc"),
 	depositeButton("Wplac"),
 	backButton("Powrot")
@@ -20,7 +20,7 @@ void DepositWindow::setCashInput()
 	RectangleShape inputBg = cashInput.background;
 	inputBg.setPosition({ 806, 475 });
 	inputBg.setSize({ 350,70 });
-	inputBg.setFillColor(appConf.primaryClr);
+	inputBg.setFillColor(appSett.primaryClr);
 	cashInput.setBackgound(inputBg);
 }
 
@@ -54,7 +54,7 @@ void DepositWindow::setNominalsButtons()
 
 void DepositWindow::setNominalBtnBg()
 {
-	nominalBtnBg.setFillColor(Color(appConf.primaryClr.toInteger() - 0x000000CC));
+	nominalBtnBg.setFillColor(Color(appSett.primaryClr.toInteger() - 0x000000CC));
 	nominalBtnBg.setPosition({806, 40});
 
 	const float sideOfBg = nominalBtnBg.getPosition().x + nominalBtnBg.getGlobalBounds().width / 2;

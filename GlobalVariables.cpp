@@ -1,6 +1,6 @@
 #include "GlobalVariables.h"
 
-AppGlobalSettings appConf;
+AppGlobalSettings appSett;
 AccountService accService;
 Cashmachine cashmachine;
 

@@ -3,11 +3,10 @@
 #include "InputBox.h"
 #include "Button.h"
 
-
 LoginWindow::LoginWindow(RenderWindow& window):
 	WindowAbstract(window),
 	confirmButton("Zatwierdz"),
-	alertText(appConf.getText())
+	alertText(appSett.getText())
 {}
 
 void LoginWindow::setFields() {
@@ -32,9 +31,8 @@ void LoginWindow::setPinInput()
 	RectangleShape inputBg = pinInput.background;
 	inputBg.setPosition({ 886, 253 });
 	inputBg.setSize({ 270, 55 });
-	inputBg.setFillColor(appConf.primaryClr);
+	inputBg.setFillColor(appSett.primaryClr);
 	pinInput.setBackgound(inputBg);
-
 }
 
 void LoginWindow::setConfirmButton()

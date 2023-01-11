@@ -33,7 +33,7 @@ private:
 	string hashText(string text);
 public:
 	RectangleShape background;
-	InputBox(int size = 20, Color color = appConf.accentClr, bool focus = false);
+	InputBox(int size = 20, Color color = appSett.accentClr, bool focus = false);
 	void draw(RenderTarget&target, RenderStates state) const override;
 	void setBackgound(const RectangleShape bg);
 	void setFont(Font& font);

@@ -11,14 +11,14 @@ OperationWindow::OperationWindow(RenderWindow& window) :
 
 void OperationWindow::setAccountBalanceText()
 {
-	accountBalanceText[0] = appConf.getText();
-	accountBalanceText[1] = appConf.getText();
+	accountBalanceText[0] = appSett.getText();
+	accountBalanceText[1] = appSett.getText();
 	accountBalanceText[0].setFillColor(Color::White);
 	accountBalanceText[1].setFillColor(Color::White);
 	accountBalanceText[0].setString("Twoj stan konta:");
 	accountBalanceText[1].setString(to_string(accService.getActiveAccount().getAccountBalance()) + " PLN");
 	accountBalanceTextBg.setPosition({ 806, 40 });
-	accountBalanceTextBg.setFillColor(Color(appConf.primaryClr.toInteger() - 0x000000CC));
+	accountBalanceTextBg.setFillColor(Color(appSett.primaryClr.toInteger() - 0x000000CC));
 
 	const float text0OriginX = accountBalanceText[0].getGlobalBounds().width / 2;
 	const float text0OriginY = accountBalanceText[0].getGlobalBounds().height /2;

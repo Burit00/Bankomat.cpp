@@ -6,14 +6,15 @@ using namespace std;
 
 class WindowAbstract abstract
 {
-public:
+protected:
+	RenderWindow &window;
 	Texture bgTexture;
 	void setBackground(string filePath);
-	RenderWindow &window;
-	WindowAbstract(RenderWindow& window);
-	virtual void draw() = 0;
 	virtual void handleEvent(Event event) = 0;
 	virtual void setFields() = 0;
+public:
+	WindowAbstract(RenderWindow& window);
+	virtual void draw() = 0;
 	bool isOpen();
 };
 

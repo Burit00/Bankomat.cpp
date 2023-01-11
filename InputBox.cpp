@@ -10,7 +10,7 @@ InputBox::InputBox(int size, Color color, bool focus) :
 {
 	_textBox.setCharacterSize(size);
 	_textBox.setFillColor(color);
-	_textBox.setFont(appConf.getFont());
+	_textBox.setFont(appSett.getFont());
 	_textBox.setString(focus ? "_" : "");
 }
 
