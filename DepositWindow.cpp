@@ -150,7 +150,6 @@ void DepositWindow::draw()
 	Sprite background;
 	background.setTexture(bgTexture);
 	deposite.resetPiggyBank();
-	setFields();
 
 	while (window.isOpen() && appController == DEPOSITE_WINDOW) {
 		while (window.pollEvent(event)) {

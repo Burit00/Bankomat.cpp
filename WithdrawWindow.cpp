@@ -14,8 +14,7 @@ WithdrawWindowal::WithdrawWindowal(RenderWindow& window) :
 {
 }
 
-void WithdrawWindowal::setAccountBalanceText()
-{
+void WithdrawWindowal::setAccountBalanceText() {
 	accountBalanceText[0] = appSett.getText();
 	accountBalanceText[1] = appSett.getText();
 	accountBalanceText[0].setFillColor(Color::White);
@@ -41,11 +40,10 @@ void WithdrawWindowal::setAccountBalanceText()
 	accountBalanceText[1].setPosition({ textPosX, text1PosY });
 }
 
-void WithdrawWindowal::setCashInput()
-{
+void WithdrawWindowal::setCashInput() {
 	cashInput.setText("");
 	cashInput.setFocused(true);
-	cashInput.setLimit(to_string(cashmachine.withdrawalLimit).length());
+	cashInput.setLimit(to_string(cashmachine.getWithdrawalLimit()).length());
 	cashInput.setType(NUMBER);
 	RectangleShape inputBg = cashInput.background;
 	inputBg.setPosition({ 806, 140 });
@@ -54,21 +52,18 @@ void WithdrawWindowal::setCashInput()
 	cashInput.setBackgound(inputBg);
 }
 
-void WithdrawWindowal::setAlertText(string content)
-{
+void WithdrawWindowal::setAlertText(string content) {
 	alertText.setString(content);
 	alertText.setFillColor(Color(0x373737FF));
 	alertText.setCharacterSize(20);
 	alertText.setPosition({ 806, 220 });
 }
 
-void WithdrawWindowal::setConfirmButton()
-{
+void WithdrawWindowal::setConfirmButton() {
 	confirmButton.setPosition({806, 550});
 }
 
-void WithdrawWindowal::prepareTransactionDetailsView()
-{
+void WithdrawWindowal::prepareTransactionDetailsView() {
 	transactionDetailsTexts.clear();
 	transactionDetailsLine.setPosition({ 806, 195 });
 	transactionDetailsBg.setPosition({ 806, 120 });
@@ -83,8 +78,7 @@ void WithdrawWindowal::prepareTransactionDetailsView()
 	transactionDetailsTitle.setPosition({ (float)posXSideOfBg, transactionDetailsBg.getPosition().y + padding - 15 });
 }
 
-void WithdrawWindowal::updateTransactionDetailsView()
-{
+void WithdrawWindowal::updateTransactionDetailsView() {
 	const float rowHeight = 40;
 	const float paddingTopBottom = 35;
 	const float paddingLeftRight = 25;
@@ -130,13 +124,11 @@ void WithdrawWindowal::updateTransactionDetailsView()
 	transactionDetailsBg.setSize({ 350, 3 * paddingTopBottom + rowHeight * transactionDetailsTexts.size() });
 }
 
-void WithdrawWindowal::setBackButton()
-{
+void WithdrawWindowal::setBackButton() {
 	backButton.setPosition({ 806 , 650 });
 }
 
-void WithdrawWindowal::setFields()
-{
+void WithdrawWindowal::setFields() {
 	setAccountBalanceText();
 	setCashInput();
 	setAlertText("");
@@ -145,8 +137,7 @@ void WithdrawWindowal::setFields()
 	setBackButton();
 }
 
-void WithdrawWindowal::handleEvent(Event event)
-{
+void WithdrawWindowal::handleEvent(Event event) {
 	switch (event.type) {
 	case Event::Closed:
 		window.close();
@@ -163,14 +154,12 @@ void WithdrawWindowal::handleEvent(Event event)
 	}
 }
 
-void WithdrawWindowal::onMouseMoved(Event event)
-{
+void WithdrawWindowal::onMouseMoved(Event event) {
 	confirmButton.isMouseOver(window);
 	backButton.isMouseOver(window);
 }
 
-void WithdrawWindowal::onClick(Event event)
-{
+void WithdrawWindowal::onClick(Event event) {
 	cashInput.setFocused(cashInput.isMouseOver(window));
 
 	if (confirmButton.isMouseOver(window)) {
@@ -180,8 +169,8 @@ void WithdrawWindowal::onClick(Event event)
 			int money = stoi(cashInput.getText());
 			if (accService.getActiveAccount().getAccountBalance() < money) {
 				setAlertText("Nie posiadasz tylu srodkow na koncie");
-			} else if (money > cashmachine.withdrawalLimit) {
-				setAlertText("Nie mozesz wyplacic kwoty powyzej\n" + to_string(cashmachine.withdrawalLimit) + " PLN");
+			} else if (money > cashmachine.getWithdrawalLimit()) {
+				setAlertText("Nie mozesz wyplacic kwoty powyzej\n" + to_string(cashmachine.getWithdrawalLimit()) + " PLN");
 			} else if (!cashmachine.isWithdrawalAvailable(money)) {
 				setAlertText("W bankomacie brakuje nominalow");
 			} else {

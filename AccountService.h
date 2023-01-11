@@ -1,13 +1,15 @@
 #pragma once
 #include "Account.h"
 #include <vector>
+#include <string>
 
 class AccountService
 {
 private:
 	Account activeAccount;
-	bool isAccountAuthorised;
 	std::vector<Account> accounts;
+	bool isAccountAuthorised = false;
+	std::string basePath = "assets/accountsBase.txt";
 	void loadAccounts();
 	void saveAccounts();
 public:

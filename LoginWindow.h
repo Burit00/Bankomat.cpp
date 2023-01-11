@@ -6,8 +6,9 @@
 class LoginWindow : public WindowAbstract
 {
 private:
-	Texture bg;
-	void setBackground();
+	Text loginTexts[5];
+	RectangleShape loginTextBg;
+	void setLoginField();
 	InputBox pinInput;
 	void setPinInput();
 	Button confirmButton;
@@ -15,10 +16,10 @@ private:
 	Text alertText;
 	void setAlertText();
 	void loginFailedHandle();
-	void handleEvent(Event event) override;
-	void setFields() override;
+	void handleEvent(Event event);
+	void setFields();
+	void draw();
 public:
 	LoginWindow(RenderWindow& window);
-	void draw();
 };
 

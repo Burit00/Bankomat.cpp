@@ -166,12 +166,11 @@
     <ClInclude Include="WithdrawWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="assets\accounts.txt" />
-    <Text Include="assets\nominals.txt" />
+    <Text Include="assets\accountsBase.txt" />
+    <Text Include="assets\nominalsBase.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\operationBg.png" />
-    <Image Include="assets\signUpBg.png" />
+    <Image Include="assets\backgroundImg.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\Roboto.ttf" />

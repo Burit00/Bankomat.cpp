@@ -64,10 +64,10 @@ bool InputBox::isMouseOver(RenderWindow& window)
 {
 	const int mouseX = Mouse::getPosition(window).x;
 	const int mouseY = Mouse::getPosition(window).y;
-	const int inputStartX = (int) background.getPosition().x;
-	const int inputEndX = (int) background.getPosition().x + background.getSize().x;
-	const int inputStartY = (int) background.getPosition().y;
-	const int inputEndY = (int) background.getPosition().y + background.getSize().y;
+	const int inputStartX = (int) background.getPosition().x - background.getOrigin().x;
+	const int inputEndX = (int) inputStartX + background.getSize().x;
+	const int inputStartY = (int) background.getPosition().y - background.getOrigin().y;
+	const int inputEndY = (int) inputStartY + background.getSize().y;
 
 	if (_hasBackgound) {
 		if (isInRange(mouseX, inputStartX, inputEndX) && isInRange(mouseY, inputStartY, inputEndY)) {
@@ -127,7 +127,7 @@ void InputBox::inputLogic(int charTyped)
 			_text << static_cast<char>(charTyped);
 			break;
 		case NUMBER:
-			if (charTyped > 47 && charTyped < 58)
+			if (charTyped >= '0' && charTyped <= '9')
 				_text << static_cast<char>(charTyped);
 			break;
 		}
@@ -154,8 +154,8 @@ bool InputBox::isInRange(int pos, int x1, int x2) const
 void InputBox::setTextPositionForBackground()
 {
 	float textOriginY = (float) _textBox.getCharacterSize() / 2;
-	float textPosX = (float) background.getPosition().x + (background.getSize().y - _textBox.getCharacterSize())/2;
-	float textPosY = (float) background.getPosition().y + background.getSize().y / 2;
+	float textPosX = (float) background.getPosition().x - background.getOrigin().x + (background.getSize().y - _textBox.getCharacterSize()) / 2;
+	float textPosY = (float) background.getPosition().y - background.getOrigin().y + background.getSize().y / 2;
 
 	_textBox.setOrigin({ 0, textOriginY });
 	_textBox.setPosition({ textPosX,  textPosY });
@@ -169,7 +169,7 @@ void InputBox::setTextOnScreen()
 string InputBox::hashText(string text)
 {
 	string password("");
-	for (int i = 0; i < text.length(); i++) password += char(42);
+	for (int i = 0; i < text.length(); i++) password += '*';
 	return password;
 }
 

@@ -3,7 +3,13 @@
 WindowAbstract::WindowAbstract(RenderWindow& targetWindow):
 	window(targetWindow)
 {
-	setBackground("assets/operationBg.png");
+	setBackground("assets/backgroundImg.png");
+}
+
+void WindowAbstract::open()
+{
+	setFields();
+	draw();
 }
 
 void WindowAbstract::setBackground(string filePath)

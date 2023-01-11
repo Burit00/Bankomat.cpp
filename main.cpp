@@ -15,17 +15,17 @@ int main() {
 
 	while (window.isOpen()) {
 		if (!accService.isAuthorised())
-			loginWindow.draw();
+			loginWindow.open();
 		else {
 			switch (appController) {
 			case OPERATION_WINDOW:
-				operationWindow.draw();
+				operationWindow.open();
 				break;
 			case DEPOSITE_WINDOW:
-				depositWindow.draw();
+				depositWindow.open();
 				break;
 			case WITHDRAWAL_WINDOW:
-				withdrawWindow.draw();
+				withdrawWindow.open();
 				break;
 			}
 		}

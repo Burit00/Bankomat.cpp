@@ -12,9 +12,10 @@ protected:
 	void setBackground(string filePath);
 	virtual void handleEvent(Event event) = 0;
 	virtual void setFields() = 0;
+	virtual void draw() = 0;
 public:
 	WindowAbstract(RenderWindow& window);
-	virtual void draw() = 0;
+	void open();
 	bool isOpen();
 };
 

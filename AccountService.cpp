@@ -2,14 +2,11 @@
 #include <iostream>
 #include "AccountService.h"
 
-AccountService::AccountService() :
-	isAccountAuthorised(false)
-{
+AccountService::AccountService() {
 	loadAccounts();
 }
 
-AccountService::~AccountService()
-{
+AccountService::~AccountService() {
 	saveAccounts();
 }
 
@@ -26,7 +23,7 @@ bool AccountService::authorise(const std::string pin)
 }
 
 void AccountService::loadAccounts() {
-	std::ifstream accountsFile("assets/accounts.txt");
+	std::ifstream accountsFile(basePath);
 	std::string pin("");
 	int cash{};
 	while (accountsFile >> pin >> cash) {
@@ -35,9 +32,8 @@ void AccountService::loadAccounts() {
 	}
 }
 
-void AccountService::saveAccounts()
-{
-	std::ofstream accountsFile("assets/accounts.txt");
+void AccountService::saveAccounts() {
+	std::ofstream accountsFile(basePath);
 	for (Account account: accounts) {
 		accountsFile << account.pin << "	" << account.cash << "\n";
 	}
@@ -47,13 +43,11 @@ bool AccountService::isAuthorised() {
 	return isAccountAuthorised;
 }
 
-Account& AccountService::getActiveAccount()
-{
+Account& AccountService::getActiveAccount() {
 	return activeAccount;
 }
 
-void AccountService::logout()
-{
+void AccountService::logout() {
 	isAccountAuthorised = false;
 	for (Account& account : accounts) {
 		if (account == activeAccount)
@@ -61,7 +55,6 @@ void AccountService::logout()
 	}
 }
 
-void AccountService::addCashToAccount(const int money)
-{
+void AccountService::addCashToAccount(const int money) {
 	activeAccount.cash += money;
 }
