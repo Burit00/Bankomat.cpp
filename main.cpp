@@ -14,7 +14,7 @@ int main() {
 	WithdrawWindowal withdrawWindow(window);
 
 	while (window.isOpen()) {
-		if(!accService.isAuthorised())
+		if (!accService.isAuthorised())
 			loginWindow.draw();
 		else {
 			switch (appController) {
