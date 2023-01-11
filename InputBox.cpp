@@ -2,7 +2,7 @@
 
 InputBox::InputBox(int size, Color color, bool focus) :
 	_type(TEXT),
-	_maxLength(0),
+	_maxLength(50),
 	_isFocused(focus),
 	_hasBackgound(false),
 	_isPassword(false),
@@ -81,12 +81,11 @@ bool InputBox::isMouseOver(RenderWindow& window)
 	}
 }
 
-void InputBox::onTyped(Event keyboardEvent)
+void InputBox::onTyped(char sign)
 {
 	if (!_isFocused) return;
-	int text = keyboardEvent.text.unicode;
-	if (text < 128) {
-		if(!_maxLength || _text.str().length() < _maxLength || text == DELETE_KEY) inputLogic(text);
+	if (sign < 128) {
+		if(!_maxLength || _text.str().length() < _maxLength || sign == DELETE_KEY) inputLogic(sign);
 	}
 }
 
@@ -175,5 +174,5 @@ string InputBox::hashText(string text)
 }
 
 bool InputBox::isEmpty() {
-	return !_text.str().empty();
+	return _text.str().empty();
 }

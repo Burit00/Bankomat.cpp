@@ -4,11 +4,12 @@
 DepositWindow::DepositWindow(RenderWindow& window):
 	WindowAbstract(window),
 	nominalBtnBg({350,420}),
+	description1(appConf.getText("Wybierz nominaly ktore")),
+	description2(appConf.getText("wplacisz")),
+	alertText(appConf.getText("Wprowadz kwote")),
 	resetButton("Wyczysc"),
 	depositeButton("Wplac"),
-	backButton("Powrot"),
-	description1(appConf.getText("Wybierz nominaly ktore")),
-	description2(appConf.getText("wplacisz"))
+	backButton("Powrot")
 {
 }
 
@@ -59,9 +60,19 @@ void DepositWindow::setNominalBtnBg()
 	const float sideOfBg = nominalBtnBg.getPosition().x + nominalBtnBg.getGlobalBounds().width / 2;
 
 	description1.setPosition({ sideOfBg - description1.getGlobalBounds().width / 2, 55});
-	description2.setPosition({ sideOfBg - description2.getGlobalBounds().width / 2, 75 });
+	description2.setPosition({ sideOfBg - description2.getGlobalBounds().width / 2, 85 });
 	description1.setFillColor(Color::White);
 	description2.setFillColor(Color::White);
+}
+
+void DepositWindow::setAlertText(string content)
+{
+	const float sideOfBg = nominalBtnBg.getPosition().x + nominalBtnBg.getGlobalBounds().width / 2;
+	alertText.setString(content);
+	alertText.setFillColor(Color(0x373737FF));
+	alertText.setCharacterSize(16);
+	alertText.setOrigin({ (float) alertText.getGlobalBounds().width / 2, 0 });
+	alertText.setPosition({ sideOfBg, 435 });
 }
 
 void DepositWindow::setBackButton()
@@ -73,6 +84,7 @@ void DepositWindow::setFields()
 {
 	setNominalsButtons();
 	setNominalBtnBg();
+	setAlertText("");
 	setCashInput();
 	setResetButton();
 	setDepositeButton();
@@ -93,6 +105,7 @@ void DepositWindow::onClick(Event event)
 {
 	for (int i = 0; i < nominalButtons.size(); i++) {
 		if (nominalButtons[i].isMouseOver(window)) {
+			setAlertText("");
 			deposite.incrementNominal(i);
 			cashInput.setText(to_string(deposite.calculateCash()));
 		}
@@ -102,8 +115,14 @@ void DepositWindow::onClick(Event event)
 		cashInput.setText(to_string(deposite.calculateCash()));
 	}
 	if (depositeButton.isMouseOver(window)) {
-		cashmachine.deposite(deposite);
-		appController = OPERATION_WINDOW;
+		if (deposite.calculateCash()) {
+			cashmachine.deposite(deposite);
+			appController = OPERATION_WINDOW;
+		}
+		else {
+			setAlertText("Wprowadz kwote");
+		}
+		
 	}
 	if (backButton.isMouseOver(window))
 		appController = OPERATION_WINDOW;
@@ -133,7 +152,7 @@ void DepositWindow::draw()
 	deposite.resetPiggyBank();
 	setFields();
 
-	while (window.isOpen() && appController == DEPOSIT_WINDOW) {
+	while (window.isOpen() && appController == DEPOSITE_WINDOW) {
 		while (window.pollEvent(event)) {
 			handleEvent(event);
 		}
@@ -142,6 +161,7 @@ void DepositWindow::draw()
 		window.draw(nominalBtnBg);
 		window.draw(description1);
 		window.draw(description2);
+		window.draw(alertText);
 		for (Button btn : nominalButtons) {
 			window.draw(btn);
 		}

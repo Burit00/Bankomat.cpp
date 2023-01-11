@@ -43,7 +43,7 @@ public:
 	void setFocused(bool isFocused);
 	bool getFocused();
 	bool isMouseOver(RenderWindow& window);
-	void onTyped(Event keyboardEvent);
+	void onTyped(char sign);
 	void setType(inputTypeEnum type);
 	bool isEmpty();
 	void setText(string text = "");

@@ -9,8 +9,10 @@ private:
 	bool isAccountAuthorised;
 	std::vector<Account> accounts;
 	void loadAccounts();
+	void saveAccounts();
 public:
 	AccountService();
+	~AccountService();
 	Account& getActiveAccount();
 	void logout();
 	bool authorise(const std::string pin);

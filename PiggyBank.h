@@ -14,6 +14,5 @@ public:
 	int* getNumberOfNominals();
 	void resetPiggyBank();
 	int calculateCash();
-
 };
 

@@ -3,8 +3,8 @@
 
 OperationWindow::OperationWindow(RenderWindow& window) :
 	WindowAbstract(window),
-	depositButton("Wplatomat"),
-	withdrawButton("Wyplatomat"),
+	depositeButton("Wplatomat"),
+	withdrawalButton("Wyplatomat"),
 	logoutButton("Wyloguj"),
 	accountBalanceTextBg({ 350, 70 })
 {}
@@ -36,14 +36,14 @@ void OperationWindow::setAccountBalanceText()
 	accountBalanceText[1].setPosition({ textPosX, text1PosY });
 }
 
-void OperationWindow::setPayInButton()
+void OperationWindow::setDepositeButton()
 {
-	depositButton.setPosition({ 806, 143 });
+	depositeButton.setPosition({ 806, 140 });
 }
 
-void OperationWindow::setPayOutButton()
+void OperationWindow::setWithdrawalButton()
 {
-	withdrawButton.setPosition({ 806, 243 });
+	withdrawalButton.setPosition({ 806, 240 });
 }
 
 void OperationWindow::setLogoutButton()
@@ -53,8 +53,8 @@ void OperationWindow::setLogoutButton()
 
 void OperationWindow::setFields() {
 	setAccountBalanceText();
-	setPayInButton();
-	setPayOutButton();
+	setDepositeButton();
+	setWithdrawalButton();
 	setLogoutButton();
 }
 
@@ -66,43 +66,40 @@ void OperationWindow::handleEvent(Event event)
 		window.close();
 		break;
 	case Event::MouseMoved:
-		depositButton.isMouseOver(window);
-		withdrawButton.isMouseOver(window);
+		depositeButton.isMouseOver(window);
+		withdrawalButton.isMouseOver(window);
 		logoutButton.isMouseOver(window);
 		break;
 	case Event::MouseButtonPressed:
-		if(depositButton.isMouseOver(window))
-			appController = DEPOSIT_WINDOW;
-		if(withdrawButton.isMouseOver(window))
-			//appController = WITHDRAW_WINDOW;
-		if (logoutButton.isMouseOver(window)) {
+		if(depositeButton.isMouseOver(window))
+			appController = DEPOSITE_WINDOW;
+		if (withdrawalButton.isMouseOver(window))
+			appController = WITHDRAWAL_WINDOW;
+		if (logoutButton.isMouseOver(window))
 			accService.logout();
-		}
-			
 		break;
 	}
 }
 
 void OperationWindow::draw()
 {
-	setFields();
 	Event event;
 	Sprite bgSprite;
 	bgSprite.setTexture(bgTexture);
+	setFields();
 
 	while (window.isOpen() && 
 		accService.isAuthorised() &&
 		appController == OPERATION_WINDOW) {
-		while (window.pollEvent(event)) {
-			handleEvent(event);
-		}
+		while (window.pollEvent(event)) handleEvent(event);
+
 		window.clear();
 		window.draw(bgSprite);
 		window.draw(accountBalanceTextBg);
 		window.draw(accountBalanceText[0]);
 		window.draw(accountBalanceText[1]);
-		window.draw(depositButton);
-		window.draw(withdrawButton);
+		window.draw(depositeButton);
+		window.draw(withdrawalButton);
 		window.draw(logoutButton);
 		window.display();
 	}

@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <SFML/Graphics/Color.hpp>
 class Account
 {
 	friend class AccountService;
@@ -8,9 +7,9 @@ private:
 	std::string pin;
 	int cash = 0;
 public:
-	Account(std::string pinCode, int AccountBalance);
-	void payIn(int cash);
-	void payOut(int cash);
+	Account(std::string pinCode = "", int AccountBalance = 0);
+	void deposite(int cash);
+	bool withdrawal(int cash);
 	int getAccountBalance();
 	std::string getPin() const;
 	Account& operator=(Account& account);

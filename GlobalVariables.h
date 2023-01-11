@@ -9,7 +9,8 @@ extern Cashmachine cashmachine;
 extern enum AppControllerEnum appController;
 
 enum AppControllerEnum {
-	OPERATION_WINDOW = 0,
-	DEPOSIT_WINDOW = 1,
-	WITHDRAW_WINDOW = 2
+	OPERATION_WINDOW ,
+	DEPOSITE_WINDOW,
+	WITHDRAWAL_WINDOW,
+	HISTORY_WINDOW
 };

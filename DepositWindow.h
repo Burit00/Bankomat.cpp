@@ -2,6 +2,7 @@
 #include "WindowAbstract.h"
 #include "Button.h"
 #include "InputBox.h"
+
 class DepositWindow : public WindowAbstract
 {
 private:
@@ -12,6 +13,8 @@ private:
 	Text description2;
 	RectangleShape nominalBtnBg;
 	void setNominalBtnBg();
+	sf::Text alertText;
+	void setAlertText(string content);
 	InputBox cashInput;
 	void setCashInput();
 	Button resetButton;

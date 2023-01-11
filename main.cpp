@@ -3,15 +3,15 @@
 #include "LoginWindow.h"
 #include "OperationWindow.h"
 #include "DepositWindow.h"
+#include "WithdrawWindow.h"
 using namespace sf;
-
-//AppControllerEnum appController = OPERATION_WINDOW;
 
 int main() {
 	RenderWindow window(VideoMode(1200, 800), "Bankomat", Style::Close);
 	LoginWindow loginWindow(window);
 	OperationWindow operationWindow(window);
 	DepositWindow depositWindow(window);
+	WithdrawWindowal withdrawWindow(window);
 
 	while (window.isOpen()) {
 		if(!accService.isAuthorised())
@@ -21,10 +21,11 @@ int main() {
 			case OPERATION_WINDOW:
 				operationWindow.draw();
 				break;
-			case DEPOSIT_WINDOW:
+			case DEPOSITE_WINDOW:
 				depositWindow.draw();
 				break;
-			case WITHDRAW_WINDOW:
+			case WITHDRAWAL_WINDOW:
+				withdrawWindow.draw();
 				break;
 			}
 		}

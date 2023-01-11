@@ -135,44 +135,46 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Account.cpp" />
-    <ClCompile Include="src\AccountService.cpp" />
-    <ClCompile Include="src\AppSettings.cpp" />
-    <ClCompile Include="src\Button.cpp" />
-    <ClCompile Include="src\Cashmachine.cpp" />
-    <ClCompile Include="src\DepositWindow.cpp" />
-    <ClCompile Include="src\GlobalVariables.cpp" />
-    <ClCompile Include="src\InputBox.cpp" />
-    <ClCompile Include="src\LoginWindow.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\OperationWindow.cpp" />
-    <ClCompile Include="src\PiggyBank.cpp" />
-    <ClCompile Include="src\WindowAbstract.cpp" />
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="AccountService.cpp" />
+    <ClCompile Include="AppSettings.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Cashmachine.cpp" />
+    <ClCompile Include="DepositWindow.cpp" />
+    <ClCompile Include="GlobalVariables.cpp" />
+    <ClCompile Include="InputBox.cpp" />
+    <ClCompile Include="LoginWindow.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="OperationWindow.cpp" />
+    <ClCompile Include="PiggyBank.cpp" />
+    <ClCompile Include="WindowAbstract.cpp" />
+    <ClCompile Include="WithdrawWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Account.h" />
-    <ClInclude Include="src\AccountService.h" />
-    <ClInclude Include="src\AppSettings.h" />
-    <ClInclude Include="src\Button.h" />
-    <ClInclude Include="src\Cashmachine.h" />
-    <ClInclude Include="src\DepositWindow.h" />
-    <ClInclude Include="src\GlobalVariables.h" />
-    <ClInclude Include="src\InputBox.h" />
-    <ClInclude Include="src\LoginWindow.h" />
-    <ClInclude Include="src\OperationWindow.h" />
-    <ClInclude Include="src\PiggyBank.h" />
-    <ClInclude Include="src\WindowAbstract.h" />
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="AccountService.h" />
+    <ClInclude Include="AppSettings.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Cashmachine.h" />
+    <ClInclude Include="DepositWindow.h" />
+    <ClInclude Include="GlobalVariables.h" />
+    <ClInclude Include="InputBox.h" />
+    <ClInclude Include="LoginWindow.h" />
+    <ClInclude Include="OperationWindow.h" />
+    <ClInclude Include="PiggyBank.h" />
+    <ClInclude Include="WindowAbstract.h" />
+    <ClInclude Include="WithdrawWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="src\assets\accounts.txt" />
-    <Text Include="src\assets\nominals.txt" />
+    <Text Include="assets\accounts.txt" />
+    <Text Include="assets\nominals.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\assets\operationBg.png" />
-    <Image Include="src\assets\signUpBg.png" />
+    <Image Include="assets\operationBg.png" />
+    <Image Include="assets\signUpBg.png" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="src\assets\Roboto.ttf" />
+    <Font Include="assets\Roboto.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,6 +21,7 @@ void Button::draw(RenderTarget& target, RenderStates states) const
 void Button::setPosition(Vector2f pos)
 {
 	background.setPosition(pos);
+	background.setFillColor(defaultColor);
 	setTextPositionForBackground();
 }
 

@@ -3,7 +3,7 @@
 WindowAbstract::WindowAbstract(RenderWindow& targetWindow):
 	window(targetWindow)
 {
-	setBackground("src/assets/operationBg.png");
+	setBackground("assets/operationBg.png");
 }
 
 void WindowAbstract::setBackground(string filePath)

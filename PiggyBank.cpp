@@ -5,7 +5,7 @@ const int PiggyBank::numberOfNominalTypes = 9;
 
 PiggyBank::PiggyBank()
 {
-	for (int nominal : numberOfNominals) nominal = 0;
+	resetPiggyBank();
 }
 
 void PiggyBank::incrementNominal(int nominalIndex)
@@ -20,9 +20,7 @@ int* PiggyBank::getNumberOfNominals()
 
 void PiggyBank::resetPiggyBank()
 {
-	for (int& nominal : numberOfNominals) {
-		nominal = 0;
-	}
+	for (int& nominal : numberOfNominals) nominal = 0;
 }
 
 int PiggyBank::calculateCash()

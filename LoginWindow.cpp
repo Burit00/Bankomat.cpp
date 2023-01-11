@@ -7,19 +7,19 @@
 LoginWindow::LoginWindow(RenderWindow& window):
 	WindowAbstract(window),
 	confirmButton("Zatwierdz"),
-	validationText(appConf.getText())
+	alertText(appConf.getText())
 {}
 
 void LoginWindow::setFields() {
 	setPinInput();
 	setConfirmButton();
 	setBackground();
-	setValidationText();
+	setAlertText();
 }
 
 void LoginWindow::setBackground()
 {
-	bgTexture.loadFromFile("src/assets/signUpBg.png");
+	bgTexture.loadFromFile("assets/signUpBg.png");
 }
 
 void LoginWindow::setPinInput()
@@ -42,15 +42,16 @@ void LoginWindow::setConfirmButton()
 	confirmButton.setPosition({ 806, 650 });
 }
 
-void LoginWindow::setValidationText()
+void LoginWindow::setAlertText()
 {
-	validationText.setFillColor(Color(0x272727FF));
-	validationText.setPosition({ 806, 325 });
+	alertText.setCharacterSize(20);
+	alertText.setFillColor(Color(0x272727FF));
+	alertText.setPosition({ 806, 325 });
 }
 
 void LoginWindow::loginFailedHandle()
 {
-			validationText.setString("wprowadzony PIN jest niepoprawny");
+	alertText.setString("wprowadzony PIN jest niepoprawny");
 }
 
 void LoginWindow::handleEvent(Event event)
@@ -71,9 +72,9 @@ void LoginWindow::handleEvent(Event event)
 		}
 		break;
 	case Event::TextEntered:
-		pinInput.onTyped(event);
+		pinInput.onTyped(event.text.unicode);
 		if (pinInput.getFocused()) 
-			validationText.setString("");
+			alertText.setString("");
 		break;
 	}
 }
@@ -81,9 +82,9 @@ void LoginWindow::handleEvent(Event event)
 void LoginWindow::draw()
 {
 	setFields();
+	Event event;
 	Sprite background;
 	background.setTexture(bgTexture);
-	Event event;
 
 	while (window.isOpen() && !accService.isAuthorised()) {
 		while (window.pollEvent(event)) {
@@ -92,8 +93,8 @@ void LoginWindow::draw()
 		window.clear();
 		window.draw(background);
 		window.draw(pinInput);
-		if (!validationText.getString().isEmpty()) 
-			window.draw(validationText);
+		if (!alertText.getString().isEmpty()) 
+			window.draw(alertText);
 		window.draw(confirmButton);
 		window.display();
 	}

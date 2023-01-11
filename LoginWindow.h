@@ -12,8 +12,8 @@ private:
 	void setPinInput();
 	Button confirmButton;
 	void setConfirmButton();
-	Text validationText;
-	void setValidationText();
+	Text alertText;
+	void setAlertText();
 	void loginFailedHandle();
 	void handleEvent(Event event) override;
 	void setFields() override;

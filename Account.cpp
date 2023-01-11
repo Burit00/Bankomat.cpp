@@ -4,16 +4,17 @@ Account::Account(std::string pinCode, int AccountBalance):
 	pin(pinCode), cash(AccountBalance)
 {}
 
-void Account::payIn(int cash)
+void Account::deposite(int cash)
 {
 	if (cash < 0) return;
 	this->cash += cash;
 }
 
-void Account::payOut(int cash)
+bool Account::withdrawal(int cash)
 {
-	if (this->cash < cash) return;
+	if (this->cash < cash) return false;
 	this->cash -= cash;
+	return true;
 }
 
 int Account::getAccountBalance()

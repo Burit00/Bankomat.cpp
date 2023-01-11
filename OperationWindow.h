@@ -8,16 +8,16 @@ private:
 	Text accountBalanceText[2];
 	RectangleShape accountBalanceTextBg;
 	void setAccountBalanceText();
-	Button depositButton;
-	void setPayInButton();
-	Button withdrawButton;
-	void setPayOutButton();
+	Button depositeButton;
+	void setDepositeButton();
+	Button withdrawalButton;
+	void setWithdrawalButton();
 	Button logoutButton;
 	void setLogoutButton();
-	void handleEvent(Event event) override;
-	void setFields() override;
+	void setFields();
+	void handleEvent(Event event);
 public:
 	OperationWindow(RenderWindow& window);
-	void draw() override;
+	void draw();
 };
 

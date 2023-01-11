@@ -3,7 +3,7 @@
 
 AppGlobalSettings::AppGlobalSettings()
 {
-	font.loadFromFile("src/assets/Roboto.ttf");
+	font.loadFromFile("assets/Roboto.ttf");
 	Text text("", font, 24);
 	text.setFillColor(accentClr);
 	this->text = text;
