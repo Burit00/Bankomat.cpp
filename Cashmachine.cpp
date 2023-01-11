@@ -9,12 +9,25 @@ Cashmachine::Cashmachine():
 	loadCash();
 }
 
+Cashmachine::~Cashmachine()
+{
+	saveCash();
+}
+
 void Cashmachine::loadCash() {
 	std::ifstream nominalFile("assets/nominals.txt");
 	int i = 0, numberOfNominal;
 
-	while (nominalFile >>  numberOfNominal) {
+	while (nominalFile >> numberOfNominal) {
 		cash.setNumberOfNominals(i++, numberOfNominal);
+	}
+}
+
+void Cashmachine::saveCash() {
+	std::ofstream nominalFile("assets/nominals.txt");
+
+	for (int numOfNominal: cash.numberOfNominals) {
+		nominalFile << numOfNominal << "	";
 	}
 }
 
@@ -33,24 +46,17 @@ void Cashmachine::deposite(PiggyBank deposite)
 
 bool Cashmachine::isWithdrawalAvailable(int money)
 {
-	return (money <= withdrawalLimit && money < cash.calculateCash());
+	return (bool)(money <= withdrawalLimit && money <= cash.calculateCash() && cash.calculateForWithdrawal(money).calculateCash() == money);
 }
 
 PiggyBank Cashmachine::wihdrawal(int money)
 {
-	PiggyBank tempWithdrawal;
-	if (!isWithdrawalAvailable(money)) return tempWithdrawal;
+	if (!isWithdrawalAvailable(money)) return PiggyBank();
 
-	for (int i = PiggyBank::numberOfNominalTypes - 1; i >= 0; i--) {
-		const int maxNominalValue = (money / PiggyBank::nominalsTypes[i]);
-		const int avaliableNominalFromCashmachine = cash.numberOfNominals[i] < maxNominalValue ? cash.numberOfNominals[i] : maxNominalValue;
+	PiggyBank tempWithdrawal = cash.calculateForWithdrawal(money);
 
-		cash.numberOfNominals[i] -= avaliableNominalFromCashmachine;
-		tempWithdrawal.setNumberOfNominals(i, avaliableNominalFromCashmachine);
-		money -= avaliableNominalFromCashmachine * PiggyBank::nominalsTypes[i];
-
-		if (money == 0) break;
-	}
+	for(int i = PiggyBank::numberOfNominalTypes - 1; i >= 0; i--)
+		cash.numberOfNominals[i] -= tempWithdrawal.numberOfNominals[i];
 	accService.getActiveAccount().withdrawal(tempWithdrawal.calculateCash());
 
 	return tempWithdrawal;

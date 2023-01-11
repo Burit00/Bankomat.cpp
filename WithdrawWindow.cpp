@@ -179,7 +179,7 @@ void WithdrawWindowal::onClick(Event event)
 			int money = stoi(cashInput.getText());
 			if (accService.getActiveAccount().getAccountBalance() < money) {
 				setAlertText("Nie posiadasz tylu srodkow na koncie");
-			} else if (cashmachine.withdrawalLimit <= money) {
+			} else if (money >= cashmachine.withdrawalLimit) {
 				setAlertText("Nie mozesz wyplacic kowty powyzej\n" + to_string(cashmachine.withdrawalLimit) + " PLN");
 			} else if (!cashmachine.isWithdrawalAvailable(money)) {
 				setAlertText("W bankomacie brakuje nominalow");
