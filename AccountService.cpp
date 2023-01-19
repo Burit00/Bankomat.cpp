@@ -7,6 +7,7 @@ AccountService::AccountService() {
 }
 
 AccountService::~AccountService() {
+	logout();
 	saveAccounts();
 }
 

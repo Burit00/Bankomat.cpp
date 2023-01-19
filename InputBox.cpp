@@ -81,14 +81,6 @@ bool InputBox::isMouseOver(RenderWindow& window)
 	}
 }
 
-void InputBox::onTyped(char sign)
-{
-	if (!_isFocused) return;
-	if (sign < 128) {
-		if(!_maxLength || _text.str().length() < _maxLength || sign == DELETE_KEY) inputLogic(sign);
-	}
-}
-
 void InputBox::setType(inputTypeEnum type)
 {
 	_type = type;
@@ -105,6 +97,15 @@ void InputBox::setText(string text)
 string InputBox::getText()
 {
 	return _text.str();
+}
+
+void InputBox::onTyped(char sign)
+{
+	if (!_isFocused) return;
+	if (sign < 128) {
+		const float bgWidth = background.getSize().x - (background.getSize().y - _textBox.getCharacterSize());
+		if ((!_maxLength || _text.str().length() < _maxLength) && _textBox.getGlobalBounds().width < bgWidth || sign == DELETE_KEY) inputLogic(sign);
+	}
 }
 
 void InputBox::inputLogic(int charTyped)
